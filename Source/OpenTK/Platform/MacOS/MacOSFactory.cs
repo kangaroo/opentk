@@ -46,7 +46,7 @@ namespace OpenTK.Platform.MacOS
 
         public virtual INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
-            return new CarbonGLNative(x, y, width, height, title, mode, options, device);
+            return new CocoaGLNative(x, y, width, height, title, mode, options, device);
         }
 
         public virtual IDisplayDeviceDriver CreateDisplayDeviceDriver()
@@ -56,19 +56,19 @@ namespace OpenTK.Platform.MacOS
 
         public virtual IGraphicsContext CreateGLContext(GraphicsMode mode, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
-            return new AglContext(mode, window, shareContext);
+            return new CglContext(mode, window, shareContext);
         }
 
         public virtual IGraphicsContext CreateGLContext(ContextHandle handle, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
-            return new AglContext(handle, window, shareContext);
+            return new CglContext(handle, window, shareContext);
         }
 
         public virtual GraphicsContext.GetCurrentContextDelegate CreateGetCurrentGraphicsContext()
         {
             return (GraphicsContext.GetCurrentContextDelegate)delegate
             {
-                return new ContextHandle(Agl.aglGetCurrentContext());
+                return new ContextHandle(Cgl.CGLGetCurrentContext());
             };
         }
 

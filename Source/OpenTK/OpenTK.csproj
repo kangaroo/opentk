@@ -300,6 +300,21 @@
     <Compile Include="Platform\MacOS\CarbonBindings\CoreFoundation.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Platform\MacOS\CglContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Platform\MacOS\CocoaApplication.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Platform\MacOS\CocoaGLNative.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Platform\MacOS\CocoaWindowInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Platform\MacOS\CocoaBindings\Cgl.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Platform\Windows\WinRawKeyboard.cs">
       <SubType>Code</SubType>
     </Compile>

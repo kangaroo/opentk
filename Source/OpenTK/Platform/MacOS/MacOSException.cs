@@ -53,6 +53,12 @@ namespace OpenTK.Platform.MacOS
             this.errorCode = (OSStatus)errorCode;
         }
 
+        internal MacOSException(Cgl.CglError errorCode, string message)
+            : base(message)
+        {
+            this.errorCode = (OSStatus)errorCode;
+        }
+
         public OSStatus ErrorCode
         {
             get { return errorCode; }
