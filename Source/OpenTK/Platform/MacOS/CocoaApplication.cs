@@ -33,6 +33,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
+using OpenTK.Platform.MacOS.Carbon;
+
 namespace OpenTK.Platform.MacOS.Cocoa
 {
     static class CocoaApplication

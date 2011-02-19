@@ -248,7 +248,23 @@ namespace OpenTK.Platform
         }
 
         #endregion
+		
+		#region CreateMacOSCarbonWindowInfo
 
+        /// <summary>
+        /// Creates an IWindowInfo instance for the Mac OS X Cocoa platform.
+        /// </summary>
+        /// <param name="windowHandle">The handle of the window.</param>
+        /// <param name="ownHandle">Ignored. This is reserved for future use.</param>
+        /// <param name="isControl">Set to true if windowHandle corresponds to a System.Windows.Forms control.</param>
+        /// <returns>A new IWindowInfo instance.</returns>
+        public static IWindowInfo CreateMacOSCocoaWindowInfo(IntPtr windowHandle, bool ownHandle, bool isControl)
+        {
+            return new OpenTK.Platform.MacOS.CocoaWindowInfo (windowHandle, false, isControl);
+        }
+		
+		#endregion
+		
         #region CreateDummyWindowInfo
 
         /// <summary>

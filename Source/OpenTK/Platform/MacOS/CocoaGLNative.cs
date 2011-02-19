@@ -38,7 +38,7 @@ namespace OpenTK.Platform.MacOS
 {
     using Carbon;
     using Graphics;
-    //using Cocoa;
+    using Cocoa;
 
     class CocoaGLNative : INativeWindow
     {
