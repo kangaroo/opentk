@@ -39,6 +39,10 @@ namespace OpenTK.Platform.Windows
         readonly object SyncRoot = new object();
         IInputDriver2 inputDriver;
 
+        public void Initialize ()
+        {
+        }
+
         #region IPlatformFactory Members
 
         public virtual INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)

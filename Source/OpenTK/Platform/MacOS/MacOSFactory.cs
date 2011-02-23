@@ -36,9 +36,25 @@ namespace OpenTK.Platform.MacOS
 
     class MacOSFactory : IPlatformFactory
     {
+
+        public void Initialize ()
+        {
+#if MONOMAC
+            GraphicsContext ctx = GraphicsContext.CreateMonoMacContext ();
+
+            ctx.MakeCurrent (null);
+            new OpenTK.Graphics.OpenGL.GL ().LoadEntryPoints ();
+
+            // We leak this for the duration of the run so that the weakref keeps it alive
+            System.Runtime.InteropServices.GCHandle.Alloc (ctx);
+#endif
+        }
+
         #region Fields
 
+#if !MONOMAC
         readonly IInputDriver2 InputDriver = new HIDInput();
+#endif
 
         #endregion
 
@@ -68,7 +84,11 @@ namespace OpenTK.Platform.MacOS
         {
             return (GraphicsContext.GetCurrentContextDelegate)delegate
             {
+#if MONOMAC
+                return new ContextHandle((IntPtr) 0xdeadbeef);
+#else
                 return new ContextHandle(Agl.aglGetCurrentContext());
+#endif
             };
         }
 
@@ -79,12 +99,20 @@ namespace OpenTK.Platform.MacOS
 
         public virtual OpenTK.Input.IKeyboardDriver2 CreateKeyboardDriver()
         {
+#if MONOMAC
+           throw new NotImplementedException ();
+#else
            return InputDriver.KeyboardDriver;
+#endif
         }
 
         public virtual OpenTK.Input.IMouseDriver2 CreateMouseDriver()
         {
+#if MONOMAC
+           throw new NotImplementedException ();
+#else
             return InputDriver.MouseDriver;
+#endif
         }
         
         #endregion

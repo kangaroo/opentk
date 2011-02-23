@@ -43,6 +43,10 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        public void Initialize ()
+        {
+        }
+
         #region IPlatformFactory Members
 
         public virtual INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)

@@ -59,6 +59,22 @@ namespace OpenTK.Graphics
 
         #region --- Constructors ---
 
+        GraphicsContext(ContextType type)
+        {
+            switch (type) {
+            case ContextType.MACCGL_CONTEXT:
+                implementation = new OpenTK.Platform.MacOS.CglContext ();
+                break;
+            default:
+                throw new NotImplementedException ();
+            }
+
+            lock (SyncRoot)
+            {
+                available_contexts.Add((implementation as IGraphicsContextInternal).Context, new WeakReference(this));
+            }
+        }
+
         // Necessary to allow creation of dummy GraphicsContexts (see CreateDummyContext static method).
         GraphicsContext(ContextHandle handle)
         {
@@ -303,6 +319,11 @@ namespace OpenTK.Graphics
         }
 
         #endregion
+
+        public static GraphicsContext CreateMonoMacContext()
+        {
+            return new GraphicsContext (ContextType.MACCGL_CONTEXT);
+        }
 
         #region public static void Assert()
 
@@ -567,5 +588,9 @@ namespace OpenTK.Graphics
         }
 
         #endregion
+
+        private enum ContextType {
+            MACCGL_CONTEXT
+        }
     }
 }

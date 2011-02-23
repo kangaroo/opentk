@@ -67,9 +67,8 @@ namespace OpenTK
                 {
                     initialized = true;
                     Configuration.Init();
-                    // The actual initialization takes place in the platform-specific factory
-                    // constructors.
-                    new Platform.Factory();
+                    System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof (OpenTK.Platform.Factory).TypeHandle);
+                    Platform.Factory.Default.Initialize ();
                 }
             }
         }

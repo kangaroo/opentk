@@ -83,6 +83,11 @@ namespace OpenTK.Platform
 
         #region IPlatformFactory Members
 
+        public void Initialize ()
+        {
+            default_implementation.Initialize();
+        }
+
         public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title,
             GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
@@ -133,6 +138,10 @@ namespace OpenTK.Platform
             #endregion
             
             #region IPlatformFactory Members
+
+            public void Initialize ()
+            {
+            }
 
             public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
             {

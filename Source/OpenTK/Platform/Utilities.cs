@@ -263,7 +263,5 @@ namespace OpenTK.Platform
         #endregion
 
         #endregion
-
-
     }
 }
